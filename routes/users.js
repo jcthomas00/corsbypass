@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     //get input and return empty string if nothing was sent
-    const userEntry = req.body.link ? req.body.link.toLowerCase() : '';
+    const userEntry = req.body.link ? req.body.link : '';
     if (userEntry === '') {
         res.send(req.body);
     }
@@ -21,9 +21,11 @@ router.post('/', (req, res) => {
         try{
             fetch(userEntry)
             .then(response => {
+                console.log(response)
                 return response.json();
             })
             .then(data => {
+                console.log(data)
                 res.send(data)
             });
         }catch(e){console.log(e)}
